@@ -94,7 +94,7 @@ const Hero = ({ isLoading }) => {
       </div>
       <div className="hero-image">
         <img
-          src={`${config.basePath}/${profilePhotos[currentPhotoIndex]}`}
+          src={`${config.basePath}${profilePhotos[currentPhotoIndex]}`}
           alt="Profile"
           className="hero-image-photo"
         />

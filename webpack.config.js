@@ -1,17 +1,17 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+const path = require("path");
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
-const basePath = process.env.BASE_PATH || '';
+const basePath = process.env.BASE_PATH || "";
 
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: basePath + '/',
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
+    publicPath: basePath + "/",
     clean: true,
   },
   module: {
@@ -20,43 +20,46 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
             presets: [
-              ["@babel/preset-env", {
-                targets: {
-                  browsers: ["last 2 versions"]
-                }
-              }],
-              "@babel/preset-react"
-            ]
-          }
-        }
+              [
+                "@babel/preset-env",
+                {
+                  targets: {
+                    browsers: ["last 2 versions"],
+                  },
+                },
+              ],
+              "@babel/preset-react",
+            ],
+          },
+        },
       },
       {
         test: /\.scss$/,
         use: [
-          'style-loader', 
-          'css-loader', 
+          "style-loader",
+          "css-loader",
           {
-            loader: 'sass-loader',
+            loader: "sass-loader",
             options: {
-              api: 'modern'
-            }
-          }
-        ]
+              api: "modern",
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
       {
         test: /\.pdf$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
     ],
   },
@@ -66,27 +69,25 @@ module.exports = {
       silent: true,
     }),
     new webpack.DefinePlugin({
-      'process.env.BASE_PATH': JSON.stringify(basePath),
+      "process.env.BASE_PATH": JSON.stringify(basePath),
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
+      template: "./src/index.html",
+      filename: "index.html",
       base: basePath || undefined,
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: 'asset', to: '', noErrorOnMissing: true },
-      ],
+      patterns: [{ from: "asset", to: "", noErrorOnMissing: true }],
     }),
   ],
   devServer: {
     static: [
       {
-        directory: path.join(__dirname, 'dist'),
+        directory: path.join(__dirname, "dist"),
       },
       {
-        directory: path.join(__dirname, 'asset'),
-        publicPath: '/',
+        directory: path.join(__dirname, "asset"),
+        publicPath: "/",
       },
     ],
     compress: true,
@@ -95,6 +96,6 @@ module.exports = {
     hot: true,
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: [".js", ".jsx"],
   },
 };
