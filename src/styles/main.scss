@@ -850,25 +850,53 @@ body {
   .hero-section {
     flex-direction: column;
     
+    &.loaded {
+      .hero-content {
+        position: absolute;
+        width: 100% !important;
+        height: 100vh;
+        left: 0 !important;
+        animation: none !important;
+      }
+      
+      .hero-image {
+        display: none;
+      }
+    }
+    
     .hero-content {
       flex: none;
-      padding: 40px 20px;
+      padding: 60px 40px 60px 40px;
       
       .hero-text {
+        max-width: 100%;
+        
         .hero-title {
-          font-size: 2rem;
+          font-size: 1.8rem;
+          margin-bottom: 20px;
+        }
+        
+        .hero-description {
+          font-size: 0.95rem;
+          margin-bottom: 30px;
+        }
+        
+        .cta-button {
+          margin-bottom: 40px;
+          font-size: 0.9rem;
+          padding: 10px 20px;
+        }
+        
+        .hero-links {
+          p {
+            font-size: 0.85rem;
+          }
         }
       }
     }
     
     .hero-image {
-      min-height: 300px;
-      
-      .hero-image-photo {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+      display: none;
     }
   }
   
